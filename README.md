@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+E-Commerce APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This Project was made to simulate a shopping website. The aim was to provide a similar feel to amazon with features such as;
+- JWT (Authentication Token)
+- bcrypt (Password Storage)
+- fastest-levenshtein (Search bar logic)
+- Nodemailer (Password Reset using email) 
+- And many more smaller modules!
 
-## Available Scripts
+When building this I wanted to bring everything I know about website design into one place
+- SQL database manipulation and access
+- REACT
+- Bootstrap
+- Netlify (not on local download)
 
-In the project directory, you can run:
+Ive tried my best to secure all the ends of the database with user input sanitation, url protection, Hashing and JWT usage and so on. If a vulnerability is detected I would appreciate a comment so I can fix it.
 
-### `npm start`
+In order to replicate the database among other features here is a guide listed below (for localhost):
+- The .env file has to have all of its values redone. The EMAIL_PASSWORD has to be an App Password for gmail
+for it to work.
+- To initialise the database, the file '' will need to be run
+- databaseDiagram, and graphics show some of the planning process
+- Lots of modules will need to be installed, such as
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+"cors": "^2.8.5",
+"crypto": "^1.0.1",
+"dotenv": "^17.2.0",
+"express": "^5.1.0",
+"jsonwebtoken": "^9.0.2",
+"multer": "^2.0.2",
+"nodemailer": "^7.0.5",
+"pg": "^8.16.3"
+"bootstrap": "^5.3.7",
+"fastest-levenshtein": "^1.0.16",
+"formik": "^2.4.6",
+"react": "^19.1.0",
+"react-bootstrap": "^2.10.10",
+"react-dom": "^19.1.0",
+"react-router-dom": "^7.6.3",
+"yup": "^1.6.1",
+"bcrypt": "^6.0.0"
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+But there may be some ive missed.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Some extra notes,
+in server/public/images, these are local uploads for products, public/uploads are ones uploaded from 
+/addProduct. This can only be accessed with the admin account admin@test.com (change password with email on downloading for security) this is due to its id being 1 which gives its authority. 

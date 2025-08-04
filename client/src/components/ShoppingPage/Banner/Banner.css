@@ -1,0 +1,114 @@
+header {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color:#15171d;; 
+  gap: 1rem; 
+  height:auto;
+  color:rgb(101, 187, 158);
+
+}
+
+p {
+    color:rgb(101, 187, 158);
+}
+
+
+
+button {
+    cursor:pointer;
+}
+
+div#delivery_address p {
+    margin:0px;
+}
+
+
+div#sign_out p {
+    margin:0px;
+}
+
+#shop_name {
+    width:200px;
+}
+
+
+
+#search_bar  {
+  flex-grow: 0.8;
+  min-width:280px;
+  display: flex;
+  align-items: center;
+
+
+}
+
+#search_bar input {
+  margin-left: 0.5rem;
+  height: 35px;
+  width: 100%
+}
+
+
+#search_bar img {
+    width: auto;
+    height: 30px;
+
+}
+
+#search_bar button{
+    margin:0
+}
+
+#sign_out button{
+    padding: 0;
+    border: none;
+    background: none;
+    
+}
+
+#sign_out p:hover{
+    text-decoration: underline;
+}
+
+
+#basket img{
+    width: 70px;
+    height: auto;
+    background-color: #15171d;
+    padding-right: 30px;
+}
+
+#basket img:hover {
+    padding-right: 25px;
+    border-left:0px;
+    width:75px;
+    transition: 200ms;
+    height:auto;
+}
+
+#basket button {
+    border: none;
+    background: none;
+    
+}
+
+
+
+@media (max-width: 900px) {
+    #delivery_address {
+        display:none;
+    }
+}
+
+
+@media (max-width: 600px) {
+    #shop_name {
+        display:none;
+    }
+}
+

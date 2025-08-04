@@ -1,0 +1,11 @@
+#register_body {
+    width:350px;
+}
+
+#register_body .card-header {
+  margin-bottom: 2rem;
+}
+
+#register_body input {
+    margin-bottom: 0.5rem;
+}

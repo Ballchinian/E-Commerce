@@ -1,0 +1,8 @@
+div#price_bar {
+    width: 300px;
+
+}
+
+div#price_bar p {
+    color:black;
+}

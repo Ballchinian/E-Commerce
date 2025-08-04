@@ -1,0 +1,30 @@
+div.basket_item p {
+    color: black;
+    margin: 15px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap; 
+}
+
+.basket_item .card-img-top {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto; /* Let the image keep its natural size */
+  max-width: 100%; /* Prevent overflow */
+  height: 280px;
+}
+
+
+div.basket_item {
+  margin-top:100px;
+  margin-left:20px;
+
+}
+
+div.number_of_items {
+    display:flex;
+    justify-content: center;
+    margin:15px;
+
+}

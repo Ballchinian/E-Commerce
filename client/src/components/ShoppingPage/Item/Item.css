@@ -1,0 +1,19 @@
+div.item_display p {
+    color: black;
+    margin: 15px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap; 
+}
+
+div.item_display .card-img-top{
+    width:320px;
+    height: 280px;
+    object-fit: contain;
+}
+
+div.basket {
+    display:flex;
+    justify-content: center;
+    margin:15px;
+}

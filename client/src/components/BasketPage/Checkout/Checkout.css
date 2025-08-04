@@ -1,0 +1,14 @@
+#checkout {
+    display:flex;
+    width:300px;
+    height:150px;
+    margin-top:15svb;
+    margin-right:80px;
+}
+
+#main_checkout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+

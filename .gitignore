@@ -4,7 +4,7 @@ package.json
 node_modules
 
 
-public/images/*
-uploads/*
-!public/images/.gitkeep
-!uploads/.gitkeep
+server/public/images/*
+server/public/uploads/*
+!server/public/images/.gitkeep
+!server/public/uploads/.gitkeep

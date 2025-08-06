@@ -16,9 +16,9 @@ When building this I wanted to bring everything I know about website design into
 Ive tried my best to secure all the ends of the database with user input sanitation, url protection, Hashing and JWT usage and so on. If a vulnerability is detected I would appreciate a comment so I can fix it.
 
 In order to replicate the database among other features here is a guide listed below (for localhost):
-- The .env file has to have all of its values redone. The EMAIL_PASSWORD has to be an App Password for gmail
+- A new .env file has to have all of its values filled. The EMAIL_PASSWORD has to be an App Password for gmail
 for it to work.
-- To initialise the database, the file '' will need to be run
+- To initialise the database, the file 'setupDatabase.js' will need to be run
 - databaseDiagram, and graphics show some of the planning process
 - Lots of modules will need to be installed, such as
 
@@ -44,4 +44,6 @@ But there may be some ive missed.
 
 Some extra notes,
 in server/public/images, these are local uploads for products, public/uploads are ones uploaded from 
-/addProduct. This can only be accessed with the admin account admin@test.com (change password with email on downloading for security) this is due to its id being 1 which gives its authority. 
+/addProduct. This can only be accessed with the admin account admin@test.com (change to your email, then request a password reset)
+
+Authentication with google and facebook doesnt work when in the local client and needs a public domain so Ive not made it working in this version

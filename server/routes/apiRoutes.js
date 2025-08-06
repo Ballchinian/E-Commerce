@@ -6,8 +6,9 @@ const multer = require('multer');
 
 //Creates file paths that are safe
 const path = require('path');
-const db = require('../db/pool'); 
 
+const db = require('../db/pool'); 
+const verifyToken = require('../middleware/authMiddleware');
 
 
 const storage = multer.diskStorage({
@@ -26,9 +27,14 @@ const storage = multer.diskStorage({
  //Initialises Multer with settings
 const upload = multer({ storage });
 
-router.post('/add-product', upload.single('image'), async (req, res) => {
+router.post('/add-product', verifyToken, upload.single('image'), async (req, res) => {
   try {
     const { name, price, description } = req.body;
+
+    //Restricts file to user with id 1 i.e the admin account
+    if (req.user.userId !== 1) {
+        return res.status(403).json({ message: 'Only admin can add products' });
+    }
 
     //(from upload.single('image'), it puts it into req.file)
     const image = req.file;

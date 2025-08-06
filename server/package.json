@@ -1,4 +1,7 @@
 {
+  "name": "ecommerce-server",
+  "version": "1.0.0",
+  "main": "index.js",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
@@ -15,6 +18,7 @@
     "supertest": "^7.1.2"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node server.js"
   }
 }

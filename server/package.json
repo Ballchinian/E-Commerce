@@ -1,7 +1,7 @@
 {
   "name": "ecommerce-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",

@@ -1,5 +1,4 @@
 const { Client } = require('pg');
-const { DB } = require('./config');
 
 (async () => {
 
@@ -42,7 +41,7 @@ const { DB } = require('./config');
       orderId         INT             NOT NULL,
       qty             INT             NOT NULL,
       productId       INT             NOT NULL,
-      FOREIGN KEY (orderId) REFERENCES orders(id)
+      FOREIGN KEY (orderId) REFERENCES orders(id),
       FOREIGN KEY (productId) REFERENCES products(id)
     );
   `
@@ -70,11 +69,11 @@ const { DB } = require('./config');
 
   try {
     const db = new Client({
-      user: DB.PGUSER,
-      host: DB.PGHOST,
-      database: DB.PGDATABASE,
-      password: DB.PGPASSWORD,
-      port: DB.PGPORT
+      user: process.env.PG_USER,
+      host: process.env.PG_HOST,
+      database: process.env.PG_DB,
+      password: process.env.PG_PASS,
+      port: process.env.PG_PORT
     });
 
     await db.connect();

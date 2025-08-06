@@ -18,29 +18,11 @@ Ive tried my best to secure all the ends of the database with user input sanitat
 In order to replicate the database among other features here is a guide listed below (for localhost):
 - A new .env file has to have all of its values filled. The EMAIL_PASSWORD has to be an App Password for gmail
 for it to work.
+- To download all the dependencies, npm install will need to be done in both client and server folders
+- Now npm start will need to be done on both client and server folders
 - To initialise the database, the file 'setupDatabase.js' will need to be run
 - databaseDiagram, and graphics show some of the planning process
-- Lots of modules will need to be installed, such as
-
-"cors": "^2.8.5",
-"crypto": "^1.0.1",
-"dotenv": "^17.2.0",
-"express": "^5.1.0",
-"jsonwebtoken": "^9.0.2",
-"multer": "^2.0.2",
-"nodemailer": "^7.0.5",
-"pg": "^8.16.3"
-"bootstrap": "^5.3.7",
-"fastest-levenshtein": "^1.0.16",
-"formik": "^2.4.6",
-"react": "^19.1.0",
-"react-bootstrap": "^2.10.10",
-"react-dom": "^19.1.0",
-"react-router-dom": "^7.6.3",
-"yup": "^1.6.1",
-"bcrypt": "^6.0.0"
-
-But there may be some ive missed.
+- http://localhost:3000/login as the url and it should work!
 
 Some extra notes,
 in server/public/images, these are local uploads for products, public/uploads are ones uploaded from 

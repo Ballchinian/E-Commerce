@@ -45,7 +45,11 @@ function App() {
   //you first have to login through /login to use it
   return (
     <Routes>
-      <Route path="/addProduct" element={<AddProduct />}/>
+      <Route path="/addProduct" element={
+        <ProtectedRoute>
+          <AddProduct />
+        </ProtectedRoute>
+      } />
 
       <Route path="/login" element={<LoginPage />} />
       <Route path="/resetPassword/:token" element={<ResetPasswordPage />} />

@@ -31,7 +31,7 @@ function Basket({basketItems, setBasketItems}) {
         
         
         fetchProducts();
-    }, []);
+    }, [setBasketItems]);
 
     if (loading) return <p>Loading products...</p>;
     if (!basketItems.length) return <p>No products in basket.</p>;

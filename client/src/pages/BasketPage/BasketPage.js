@@ -38,7 +38,7 @@ function BasketPage() {
     fetchSubtotal();
 
     //only run this when either setSubtotal or userid are changed (dependency array)
-  }, [setSubtotal]);
+  }, [setSubtotal, token]);
 
   return (
     <div id="basket_page">

@@ -1,6 +1,6 @@
 import React from "react";
 import './Item.css';
-
+import { API_BASE_URL } from '../../../config.js';
 
 import { Button, Card } from 'react-bootstrap';
 
@@ -10,7 +10,7 @@ function Item({picture_url, description, price, name, productid}) {
         const token = localStorage.getItem('token');
 
 
-        fetch('http://localhost:4000/cart/add-to-cart', {
+        fetch(`${API_BASE_URL}/cart/add-to-cart`, {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',

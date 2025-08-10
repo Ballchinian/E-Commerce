@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import BasketItem from '../BasketItem/BasketItem';
-
+import { API_BASE_URL } from '../../../config.js';
 
 function Basket({basketItems, setBasketItems}) {
     
@@ -13,7 +13,7 @@ function Basket({basketItems, setBasketItems}) {
 
             const token = localStorage.getItem('token');
             try {
-                const response = await fetch('http://localhost:4000/cart/productsForBasket', {
+                const response = await fetch(`${API_BASE_URL}/cart/productsForBasket`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

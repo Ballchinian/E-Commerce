@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import SubtotalContext from '../../../contexts/SubtotalContext'; // adjust path
 import { Card, Form } from 'react-bootstrap';
 import './BasketItem.css'
+import { API_BASE_URL } from '../../../config.js';
 
 function BasketItem({ id, name, description, picture_url, price, qty, setBasketItems }) {
   const [quantity, setQuantity] = useState(qty);
@@ -15,7 +16,7 @@ function BasketItem({ id, name, description, picture_url, price, qty, setBasketI
     const newQty = Number(e.target.value);
     setQuantity(newQty);
     try {
-      await fetch('http://localhost:4000/cart/update-cart-qty', {
+      await fetch(`${API_BASE_URL}/cart/update-cart-qty`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -25,7 +26,7 @@ function BasketItem({ id, name, description, picture_url, price, qty, setBasketI
         
       });
 
-      const subtotalRes = await fetch('http://localhost:4000/cart/update-cart-subtotal', {
+      const subtotalRes = await fetch(`${API_BASE_URL}/cart/update-cart-subtotal`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         Authorization: `Bearer ${token}`

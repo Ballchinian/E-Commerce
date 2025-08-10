@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Item from '../Item/Item'; 
 //This allows for filtering in searchbar
 import { distance } from 'fastest-levenshtein'; 
+import { API_BASE_URL } from '../../../config.js';
 
 function ItemListings({searchQuery, priceRange, sortType}) {
   //Allows for ease of access to varables for list of products loaded. 
@@ -12,7 +13,7 @@ function ItemListings({searchQuery, priceRange, sortType}) {
     async function fetchProducts() {
       const token = localStorage.getItem('token');
       try {
-        const response = await fetch('http://localhost:4000/product/products', {
+        const response = await fetch(`${API_BASE_URL}/product/products`, {
           headers: {
             'Authorization': `Bearer ${token}`,
           },

@@ -3,7 +3,7 @@ import './Log_in_display.css';
 import facebookLogo from './facebook_logo.png';
 import googleLogo from './google_logo.png'; 
 import { Button, Card, Form} from 'react-bootstrap';
-
+import { API_BASE_URL } from '../../../config.js';
 //Handles form state, validation and submission
 import { Formik } from 'formik';
 //Schema validator
@@ -27,7 +27,7 @@ function LogInDisplay() {
 
         
         try {
-            const response = await fetch('http://localhost:4000/auth/login', {
+            const response = await fetch(`${API_BASE_URL}/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
@@ -63,7 +63,7 @@ function LogInDisplay() {
         if (!email) return;
 
         try {
-            const response = await fetch('http://localhost:4000/auth/password-reset', {
+            const response = await fetch(`${API_BASE_URL}/auth/password-reset`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email })
@@ -88,7 +88,7 @@ function LogInDisplay() {
             const accessToken = response.authResponse.accessToken;
 
            
-            fetch('http://localhost:4000/auth/facebook', {
+            fetch(`${API_BASE_URL}/auth/facebook`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ accessToken }),

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { API_BASE_URL } from '../../../config.js';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -21,7 +21,7 @@ function PasswordReset() {
   const handleSubmit = async (values, { setSubmitting }) => {
     const { password } = values;
     try {
-      const response = await fetch('http://localhost:4000/auth/reset-password', {
+      const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token, newPassword: password })

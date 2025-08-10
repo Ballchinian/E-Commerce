@@ -77,7 +77,7 @@ router.post('/password-reset', async (req, res) => {
     });
 
     //Where the link will take the user
-    const resetUrl = `http://localhost:3000/resetPassword/${token}`;
+    const resetUrl = `https://e-commercelive.netlify.app/resetPassword/${token}`;
 
     await transporter.sendMail({
       to: email,

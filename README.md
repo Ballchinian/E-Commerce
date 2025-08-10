@@ -29,3 +29,18 @@ in server/public/images, these are local uploads for products, public/uploads ar
 /addProduct. This can only be accessed with the admin account admin@test.com (change to your email, then request a password reset)
 
 Authentication with google and facebook doesnt work when in the local client and needs a public domain so Ive not made it working in this version
+
+
+//Changed the database connection to use railway
+
+old version:
+
+const pool = new Pool({
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DB,
+  password: process.env.PG_PASS,
+  port: process.env.PG_PORT,
+});
+
+const resetUrl = `https://e-commercelive.netlify.app/resetPassword/${token}`;  in authRoutes (changed from localhost:3000)

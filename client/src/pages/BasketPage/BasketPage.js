@@ -1,10 +1,11 @@
 import './BasketPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { API_BASE_URL } from '../../config.js';
 import React, { useEffect, useContext, useState } from 'react';
 import Basket from '../../components/BasketPage/Basket/Basket';
 import Checkout from '../../components/BasketPage/Checkout/Checkout';
 import SubtotalContext from '../../contexts/SubtotalContext';
+
 
 function BasketPage() {
   const token = localStorage.getItem('token');
@@ -18,7 +19,7 @@ function BasketPage() {
   useEffect(() => {
     const fetchSubtotal = async () => {
       try {
-        const response = await fetch('http://localhost:4000/cart/update-cart-subtotal', {
+        const response = await fetch(`${API_BASE_URL}/cart/update-cart-subtotal`, {
           method: 'POST',
           headers: { 
             'Content-Type': 'application/json',

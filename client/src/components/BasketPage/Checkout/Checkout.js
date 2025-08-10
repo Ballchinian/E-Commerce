@@ -2,7 +2,7 @@ import SubtotalContext from '../../../contexts/SubtotalContext';
 import { Card, Button } from 'react-bootstrap';
 import './Checkout.css';
 import React, { useContext } from 'react';
-
+import { API_BASE_URL } from '../../../config.js';
 
 function Checkout({ setBasketItems }) {
   //Global subtotal values for ease of use. 
@@ -12,7 +12,7 @@ function Checkout({ setBasketItems }) {
 
   const cartToOrder = async () => {
     try {
-      await fetch('http://localhost:4000/order/cart-to-order', {
+      await fetch(`${API_BASE_URL}/order/cart-to-order`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

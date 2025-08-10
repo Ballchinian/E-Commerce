@@ -1,6 +1,7 @@
 import React from "react";
 import './Register_display.css'; 
 import { Button, Card, Form } from 'react-bootstrap';
+import { API_BASE_URL } from '../../../config.js';
 
 //Handles form state, validation and submission
 import { Formik } from 'formik';
@@ -28,7 +29,7 @@ function RegisterDisplay() {
     
         try {
             
-            const response = await fetch('http://localhost:4000/auth/register', {
+            const response = await fetch(`${API_BASE_URL}/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ firstName, lastName, email, password })

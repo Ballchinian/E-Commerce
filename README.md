@@ -36,11 +36,11 @@ Authentication with google and facebook doesnt work when in the local client and
 old version:
 
 const pool = new Pool({
-  user: process.env.<PG_USER>,
-  host: process.env.<PG_HOST>,
-  database: process.env.<PG_DB>,
-  password: process.env.<PG_PASS>,
-  port: process.env.<PG_PORT>,
+  user: process.env.,
+  host: process.env.,
+  database: process.env.,
+  password: process.env.,
+  port: process.env.,
 });
 
 const resetUrl = `https://e-commercelive.netlify.app/resetPassword/${token}`;  in authRoutes (changed from localhost:3000)

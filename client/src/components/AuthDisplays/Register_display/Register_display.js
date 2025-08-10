@@ -41,7 +41,7 @@ function RegisterDisplay() {
                 navigate('/login');
                 
             } else {
-                console.log('Register failed')
+                console.log('Register failed:', data);
 
                 if (data.message === 'duplicate key value violates unique constraint "users_email_idx"') {
                   setErrors({ email: "There is already a user with that email"});

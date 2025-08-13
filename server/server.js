@@ -15,11 +15,11 @@ app.use(express.static('public'));
 
 // Public routes
 app.use('/auth', require('./routes/authRoutes'));
-app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+//app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 // Protected routes
-app.use(verifyToken);
-app.use('/api', require('./routes/apiRoutes'));
+//app.use(verifyToken);
+//app.use('/api', require('./routes/apiRoutes'));
 app.use('/product', require('./routes/productRoutes'));
 app.use('/cart', require('./routes/cartRoutes'));
 app.use('/order', require('./routes/orderRoutes'));

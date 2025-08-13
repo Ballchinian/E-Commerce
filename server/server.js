@@ -16,7 +16,7 @@ app.use(express.static('public'));
 // Public routes
 app.use('/auth', require('./routes/authRoutes'));
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
-//app.use('/api', require('./routes/apiRoutes'));
+app.use('/api', require('./routes/apiRoutes'));
 // Protected routes
 
 app.use(verifyToken);

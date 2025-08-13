@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-import { API_BASE_URL } from '../../config.js';
+const { API_BASE_URL } = require('../../config.js')
 const fileFilter = require("../middleware/imageSecurityMiddleware");
 // Allows for file uploads from an API standpoint
 const multer = require('multer');
@@ -14,7 +14,7 @@ const db = require('../db/pool');
 const storage = multer.diskStorage({
   // Where to store images
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../public/uploads/'));
+    cb(null, path.join(__dirname, '../public/uploads')); // Saves to public/uploads
   },
   // What to call it
   filename: (req, file, cb) => {

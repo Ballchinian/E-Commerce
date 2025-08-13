@@ -53,7 +53,7 @@ async function resetPassword({ token, newPassword }, db) {
       [token, Date.now()]
     );
     if (userResult.rows.length === 0) {
-      return res.status(400).json({ message: 'Invalid or expired token.' });
+      return { success: false, message: 'Invalid or expired token.' };
     }
 
     //Ensures bcypt on password reset attempt

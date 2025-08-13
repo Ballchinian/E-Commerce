@@ -2,17 +2,17 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const path = require('path');
+app.use(cors({
+  origin: 'https://e-commercelive.netlify.app', // allow Netlify site to make cors reqests for addProduct
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+app.options('*', cors());
+
 //Security, making sure token is valid and needed for all routes
 const verifyToken = require('./middleware/authMiddleware');
 
 const app = express();
-app.use(cors({
-  origin: 'https://e-commercelive.netlify.app', // allow Netlify site
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
-
-app.options('*', cors());
 
 app.use(express.json());
 

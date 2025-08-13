@@ -2,36 +2,37 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const path = require('path');
-//Security, making sure token is valid and needed for all routes
 const verifyToken = require('./middleware/authMiddleware');
 
-
 const app = express();
+
+// Enable CORS for all routes first
 app.use(cors({
-  origin: 'https://e-commercelive.netlify.app', // allow Netlify site to make cors reqests for addProduct
+  origin: 'https://e-commercelive.netlify.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Handle preflight requests globally BEFORE verifyToken
 app.options('*', cors());
+
 app.use(express.json());
 app.use(express.static('public'));
+
+// Public routes
 app.use('/auth', require('./routes/authRoutes'));
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
-//Secured all these routes
+
+// Protected routes
 app.use(verifyToken);
 app.use('/api', require('./routes/apiRoutes'));
 app.use('/product', require('./routes/productRoutes'));
 app.use('/cart', require('./routes/cartRoutes'));
 app.use('/order', require('./routes/orderRoutes'));
 
-
-
 module.exports = app;
 
-// Only start server if not in test mode
 if (process.env.NODE_ENV !== 'test') {
   const PORT = process.env.PORT || 4000;
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }
-
-

@@ -96,7 +96,7 @@ router.post('/password-reset', async (req, res) => {
 //When user takes email link, here we actually reset the password
 router.post('/reset-password', async (req, res) => {
 
-  
+
   try {
 
     //Needs token for authentication (reset_token, not the normal token)

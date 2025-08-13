@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+import { API_BASE_URL } from '../../config.js';
 //Allows for file uploads from an api standpoint
 const multer = require('multer');
 
@@ -41,7 +41,7 @@ router.post('/add-product', verifyToken, upload.single('image'), async (req, res
 
     if (!image) return res.status(400).json({ message: 'Image is required' });
 
-    const imageUrl = `http://localhost:4000/uploads/${image.filename}`;
+    const imageUrl = `${API_BASE_URL}/${image.filename}`;
     
     await db.query(
       'INSERT INTO products (name, price, description, picture_url) VALUES ($1, $2, $3, $4)',

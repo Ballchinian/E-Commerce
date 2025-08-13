@@ -8,7 +8,7 @@ const app = express();
 
 // Enable CORS for all routes first
 app.use(cors({
-  origin: 'https://e-commercelive.netlify.app',
+  origin: 'https://e-commercelive.netlify.app/addProduct',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));

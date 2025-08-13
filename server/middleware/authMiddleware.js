@@ -4,6 +4,10 @@ require('dotenv').config();
 
 //Verifies tokens using JWT
 function verifyToken(req, res, next) {
+
+  if (req.method === 'OPTIONS') {
+    return next();
+  }
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1]; 
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { API_BASE_URL } = require('../config');
+import { API_BASE_URL } from `../config`;
 const fileFilter = require("../middleware/imageSecurityMiddleware");
 // Allows for file uploads from an API standpoint
 const multer = require('multer');

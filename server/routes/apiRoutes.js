@@ -1,60 +1,61 @@
 const express = require('express');
 const router = express.Router();
 import { API_BASE_URL } from '../../config.js';
-//Allows for file uploads from an api standpoint
+import fileFilter from '../middleware/imageSecurityMiddleware';
+// Allows for file uploads from an API standpoint
 const multer = require('multer');
-
-//Creates file paths that are safe
+// Creates file paths that are safe
 const path = require('path');
 
 const db = require('../db/pool'); 
-const verifyToken = require('../middleware/authMiddleware');
 
 
+// Sets storage destination and filename for uploaded images
 const storage = multer.diskStorage({
-  //Where to store images
+  // Where to store images
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, '../public/uploads/'));
   },
-  //What to call it
+  // What to call it
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    //Keeps .png or jpg
+    // Keeps .png or .jpg extension
     cb(null, uniqueSuffix + path.extname(file.originalname));
   }
 });
 
- //Initialises Multer with settings
-const upload = multer({ storage });
+// Initialises Multer with settings + file size limit (2MB)
+const upload = multer({ 
+  storage,
+  fileFilter, // Ensures only safe image types are allowed
+  limits: { fileSize: 2 * 1024 * 1024 } // Restricts file size to 2MB
+});
 
-router.post('/add-product', verifyToken, upload.single('image'), async (req, res) => {
+// Route to add a new product without token requirement
+// File upload is validated by multer and fileFilter
+router.post('/add-product', upload.single('image'), async (req, res) => {
   try {
     const { name, price, description } = req.body;
 
-    //Restricts file to user with id 1 i.e the admin account
-    if (req.user.userId !== 1) {
-        return res.status(403).json({ message: 'Only admin can add products' });
-    }
+    // If no image is uploaded, reject the request
+    if (!req.file) return res.status(400).json({ message: 'Image is required' });
 
-    //(from upload.single('image'), it puts it into req.file)
-    const image = req.file;
-
-    if (!image) return res.status(400).json({ message: 'Image is required' });
-
-    const imageUrl = `${API_BASE_URL}/${image.filename}`;
+    // Builds the image URL for database storage
+    const imageUrl = `${API_BASE_URL}/${req.file.filename}`;
     
+    // Inserts product details and image URL into the database
     await db.query(
       'INSERT INTO products (name, price, description, picture_url) VALUES ($1, $2, $3, $4)',
       [name, price, description, imageUrl]
     );
 
+    // Success response
     res.status(201).json({ message: 'Product added successfully' });
   } catch (error) {
     console.error('Error adding product:', error);
+    // Sends server error to client
     res.status(500).json({ message: 'Server error' });
   }
 });
-
-
 
 module.exports = router;

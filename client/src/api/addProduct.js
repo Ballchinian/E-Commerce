@@ -1,8 +1,4 @@
 import React, { useState } from 'react';
-/**this pathway is not properly built or beautified as it would require an entire form process
- of being a trusted user to upload. Its left to show how an api would be added as a skeleton
- too add a product you first have to login through /login
-**/
 import './addProduct.css'
 import { API_BASE_URL } from '../config';
 

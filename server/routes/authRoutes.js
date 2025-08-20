@@ -137,12 +137,9 @@ router.post('/facebook', async (req, res) => {
     }
 
     const token = jwt.sign({ userId: user.rows[0].id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    return res.status(200).json({ 
-      success: true, 
-      token, 
-      email
-    });
-
+    res.json({ token, email });
+ 
+    
   } catch (err) {
     console.error(err);
     res.status(400).json({ error: 'Facebook auth failed' });

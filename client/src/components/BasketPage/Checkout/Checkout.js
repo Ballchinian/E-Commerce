@@ -23,6 +23,7 @@ function Checkout({ setBasketItems }) {
       });
       setBasketItems([])
       setSubtotal(0);
+      alert('Your cart has been successfully converted to an order!');
       
     } catch (err) {
       console.error('Failed to update the cart as an order:', err);

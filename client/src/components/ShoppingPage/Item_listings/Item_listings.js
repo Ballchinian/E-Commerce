@@ -38,10 +38,13 @@ function ItemListings({searchQuery, priceRange, sortType}) {
     
     //Matches the result with the products within one letter for flexible searching
     const words = name.split(/\s+/);
+    console.log('words=', words);
+
     const wordMatches = words.some(word => distance(word, query) <= 1);
+    console.log('wordMatches=', wordMatches);
 
     const substringMatch = name.includes(query);
-
+    console.log('substringMatch=', substringMatch);
     //HasNoMax allows for price range to go beyond 999
     const [minPrice, maxPrice] = priceRange;
     const hasNoMax = maxPrice >= 999;

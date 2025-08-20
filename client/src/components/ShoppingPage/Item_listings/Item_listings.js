@@ -29,25 +29,27 @@ function ItemListings({searchQuery, priceRange, sortType}) {
     fetchProducts();
   }, []);
 
-  const [minPrice, maxPrice] = priceRange;
+  
 
   //From searchQuerry (told to update from banner.js) we can make a list of filteredProducts for user
   const filteredProducts = products.filter(product => {
-    const query = searchQuery.toLowerCase();
+    const query = searchQuery.toLowerCase().trim();
     const name = product.name.toLowerCase();
     
     //Matches the result with the products within one letter for flexible searching
-    const nameMatches = 
-      name.includes(query) ||
-      name.split(" ").some(word => distance(word, query) <= 1);
+    const words = name.split(/\s+/);
+    const wordMatches = words.some(word => distance(word, query) <= 1);
+
+    const substringMatch = name.includes(query);
 
     //HasNoMax allows for price range to go beyond 999
+    const [minPrice, maxPrice] = priceRange;
     const hasNoMax = maxPrice >= 999;
     const priceMatches =
     product.price >= minPrice && (hasNoMax || product.price <= maxPrice);
 
 
-    return nameMatches && priceMatches;
+    return (substringMatch || wordMatches) && priceMatches;
   });
 
   //After filtering, we can sort the products based on the filter

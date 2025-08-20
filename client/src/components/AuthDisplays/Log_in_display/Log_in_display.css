@@ -38,8 +38,10 @@ div#new_account {
 
 
 div#auth {
-    display:flex;
-    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;          
+    align-items: center;   
 }
 
 #auth img {

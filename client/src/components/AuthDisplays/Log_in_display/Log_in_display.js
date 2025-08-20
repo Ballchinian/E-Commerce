@@ -210,10 +210,10 @@ function LogInDisplay() {
                             <p>Continue with facebook</p>
                         </Button>
                             
-                    <GoogleLogin
-                        onSuccess={handleGoogleSuccess}
-                        onError={() => console.error('Google login failed')}
-                    />
+                        <GoogleLogin
+                            onSuccess={handleGoogleSuccess}
+                            onError={() => console.error('Google login failed')}
+                        />
                         
                     </Card.Body>
 

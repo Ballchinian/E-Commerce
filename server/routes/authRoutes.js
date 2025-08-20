@@ -4,6 +4,9 @@ const { login, register, resetPassword } = require('../services/AuthService');
 const pool = require('../db/pool'); 
 const jwt = require("jsonwebtoken");
 
+const { OAuth2Client } = require("google-auth-library");
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
 //For mail sending on password reset
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
@@ -146,5 +149,47 @@ router.post('/facebook', async (req, res) => {
   }
 });
 
+router.post("/google", async (req, res) => {
+  try {
+    const { credential } = req.body;
+
+    //Verify Google token
+    const ticket = await client.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    const payload = ticket.getPayload();
+
+    const email = payload.email;
+    const firstName = payload.given_name;
+
+    //Find or create user in DB
+    let user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+    if (user.rows.length === 0) {
+      user = await pool.query(
+        "INSERT INTO users (firstName, email, isOAuth) VALUES ($1, $2, $3) RETURNING *",
+        [firstName, email, true]
+      );
+    } else {
+      user = { rows: user.rows };
+    }
+
+    //Create JWT
+    const token = jwt.sign(
+      { userId: user.rows[0].id, email: user.rows[0].email },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.json({
+      success: true,
+      token,
+      user: { firstName: user.rows[0].firstname, email: user.rows[0].email },
+    });
+  } catch (err) {
+    console.error("Google auth error:", err);
+    res.status(400).json({ success: false, message: "Google authentication failed" });
+  }
+});
 
 module.exports = router;

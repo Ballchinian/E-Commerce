@@ -2,6 +2,7 @@ import React from "react";
 import './Log_in_display.css';
 import facebookLogo from './facebook_logo.png';
 import googleLogo from './google_logo.png'; 
+import { GoogleLogin } from '@react-oauth/google';
 import { Button, Card, Form} from 'react-bootstrap';
 import { API_BASE_URL } from '../../../config.js';
 //Handles form state, validation and submission
@@ -109,6 +110,27 @@ function LogInDisplay() {
         }, { scope: 'email' });
     }
 
+    const handleGoogleSuccess = async (credentialResponse) => {
+        try {
+        const response = await fetch(`${API_BASE_URL}/auth/google`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ credential: credentialResponse.credential }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('email', JSON.stringify(data.user.email));
+            navigate('/shopping');
+        } else {
+            console.error('Google login failed:', data.message);
+        }
+        } catch (err) {
+        console.error('Google login error:', err);
+        }
+    };
+
     return (
             <Card>
                 <Card.Body id="login_banner">
@@ -188,10 +210,15 @@ function LogInDisplay() {
                             <p>Continue with facebook</p>
                         </Button>
 
-                        <Button type="button" variant="outline-light" >
-                            <img src={googleLogo} alt="The google logo"></img>
-                            <p>Continue with Google</p>
-                        </Button>
+
+                            
+                    <GoogleLogin
+                        onSuccess={handleGoogleSuccess}
+                        onError={() => console.error('Google login failed')}
+                    />
+                    <img src={googleLogo} alt="The google logo"></img>
+                    <p>Continue with Google</p>
+
                         
                     </Card.Body>
 

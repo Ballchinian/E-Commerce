@@ -1,7 +1,7 @@
 import React from "react";
 import './Log_in_display.css';
 import facebookLogo from './facebook_logo.png';
-import googleLogo from './google_logo.png'; 
+//import googleLogo from './google_logo.png'; 
 import { GoogleLogin } from '@react-oauth/google';
 import { Button, Card, Form} from 'react-bootstrap';
 import { API_BASE_URL } from '../../../config.js';
@@ -209,15 +209,11 @@ function LogInDisplay() {
                             <img src={facebookLogo} alt="The facebook logo"></img>
                             <p>Continue with facebook</p>
                         </Button>
-
-
                             
                     <GoogleLogin
                         onSuccess={handleGoogleSuccess}
                         onError={() => console.error('Google login failed')}
                     />
-
-
                         
                     </Card.Body>
 

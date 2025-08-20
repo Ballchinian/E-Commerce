@@ -32,16 +32,16 @@ function Item({picture_url, description, price, name, productid}) {
     
 
     return (
-        <div class="item_display ">
+        <div className="item_display ">
             <Card border="light">
                 <Card.Img  variant="top"  src={picture_url} alt="Item display"  />
                 <Card.Body>
                     <Card.Header>{name}</Card.Header>
                     <Card.Text >{description}</Card.Text>
                     <Card.Subtitle>£{price}</Card.Subtitle>
-                    <div class="basket">
+                    <div className="basket">
 
-                        <Button type="button" class="btn btn-success" onClick={handleAddToCart}>
+                        <Button type="button" className="btn btn-success" onClick={handleAddToCart}>
                             Add to basket
                         </Button>
                     </div>

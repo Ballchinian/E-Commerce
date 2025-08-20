@@ -4,7 +4,7 @@ import { Dropdown, Button } from 'react-bootstrap';
 
 function FilterMenu({setSortType, sortType}) {
     return (
-        <div class="toggle_filter">
+        <div className="toggle_filter">
             <Dropdown>
                 <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                     {sortType}

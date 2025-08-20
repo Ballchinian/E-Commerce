@@ -100,7 +100,7 @@ function LogInDisplay() {
                 .then(res => res.json())
                 .then(data => {
                 localStorage.setItem('token', data.token);
-                localStorage.setItem('email', JSON.stringify(data.email));
+                localStorage.setItem('email', JSON.stringify(data.user[email]));
                 navigate('/shopping');
                 });
             } else {

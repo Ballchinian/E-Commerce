@@ -137,7 +137,7 @@ router.post('/facebook', async (req, res) => {
     }
 
     const token = jwt.sign({ userId: user.rows[0].id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.json({ token, email });
+    res.json({ token, user: { firstName: user.rows[0].firstname, email: user.rows[0].email } });
  
     
   } catch (err) {

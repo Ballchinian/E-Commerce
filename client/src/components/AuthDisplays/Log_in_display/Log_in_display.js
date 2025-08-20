@@ -101,6 +101,7 @@ function LogInDisplay() {
                 .then(data => {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('email', JSON.stringify(data.user[email]));
+                localStorage.setItem('user', JSON.stringify(data.user));
                 navigate('/shopping');
                 });
             } else {

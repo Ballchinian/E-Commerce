@@ -38,12 +38,16 @@ div#new_account {
 
 
 div#auth {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;          
-    align-items: center;   
+    display:flex;
+    justify-content: space-evenly;
 }
 
+div#card-body {
+    display: flex;
+    flex-direction: column; 
+    gap: 0.5rem;           
+    align-items: center;   
+}
 #auth img {
     width: 30px;
     height:30px;

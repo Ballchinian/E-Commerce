@@ -216,8 +216,7 @@ function LogInDisplay() {
                         onSuccess={handleGoogleSuccess}
                         onError={() => console.error('Google login failed')}
                     />
-                    <img src={googleLogo} alt="The google logo"></img>
-                    <p>Continue with Google</p>
+
 
                         
                     </Card.Body>

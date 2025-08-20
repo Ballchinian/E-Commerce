@@ -41,7 +41,7 @@ router.post('/add-product', upload.single('image'), async (req, res) => {
     if (!req.file) return res.status(400).json({ message: 'Image is required' });
 
     // Builds the image URL for database storage
-    const imageUrl = `${API_BASE_URL}/${req.file.filename}`;
+    const imageUrl = `${API_BASE_URL}/uploads/${req.file.filename}`;
     
     // Inserts product details and image URL into the database
     await db.query(

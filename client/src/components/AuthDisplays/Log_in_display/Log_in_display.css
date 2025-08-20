@@ -42,7 +42,7 @@ div#auth {
     justify-content: space-evenly;
 }
 
-div#card-body {
+div#auth.card-body {
     display: flex;
     flex-direction: column; 
     gap: 0.5rem;           

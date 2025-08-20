@@ -83,6 +83,10 @@ function LogInDisplay() {
 
 
     function handleFacebookLogin() {
+        if (!window.FB) {
+            console.error("Facebook SDK not loaded yet.");
+            return;
+        }
         window.FB.login(function (response) {
             if (response.authResponse) {
             const accessToken = response.authResponse.accessToken;

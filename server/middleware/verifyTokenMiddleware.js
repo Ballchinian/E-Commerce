@@ -4,7 +4,9 @@ require('dotenv').config();
 
 //Verifies tokens using JWT
 function verifyToken(req, res, next) {
-
+  if (req.path.startsWith('/uploads')) {
+    return next(); // skip token check, bug with images not loading
+  }
   if (req.method === 'OPTIONS') {
     return next();
   }

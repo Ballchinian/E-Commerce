@@ -38,7 +38,7 @@ function ItemListings({searchQuery, priceRange, sortType}) {
     
     //Matches the result with the products within one letter for flexible searching
     const nameMatches = 
-    name.includes(query) || distance(name, query) <= 1;
+    name.includes(query) || distance(name, query) <= 2;
 
     //HasNoMax allows for price range to go beyond 999
     const hasNoMax = maxPrice >= 999;

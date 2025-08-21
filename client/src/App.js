@@ -45,6 +45,7 @@ function App() {
   //you first have to login through /login to use it
   return (
     <Routes>
+      <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/addProduct" element={
         <ProtectedRoute>
           <AddProduct />

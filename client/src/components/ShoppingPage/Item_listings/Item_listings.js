@@ -33,34 +33,34 @@ function ItemListings({searchQuery, priceRange, sortType}) {
 
   //From searchQuerry (told to update from banner.js) we can make a list of filteredProducts for user
   const filteredProducts = products.filter(product => {
-  const query = searchQuery.toLowerCase().trim();
-  if (!query) return true; // no query = all products
+    const query = searchQuery.toLowerCase().trim();
+    if (!query) return true; //no query = all products
 
-  const name = product.name.toLowerCase();
-  const words = name.split(/\s+/);
-  const queryTokens = query.split(/\s+/);
+    const name = product.name.toLowerCase();
+    const words = name.split(/\s+/);
+    const queryTokens = query.split(/\s+/);
 
-  // allow max edit distance depending on length
-  const allowedEdits = (len) => {
-    if (len <= 2) return 0; // tiny tokens must match exactly
-    if (len <= 4) return 1;
-    return 2;
-  };
+    //allow max edit distance depending on length
+    const allowedEdits = (len) => {
+      if (len <= 2) return 0; //tiny tokens must match exactly
+      if (len <= 4) return 1;
+      return 2;
+    };
 
-  const matchesQuery = queryTokens.every(token => {
-    const edits = allowedEdits(token.length);
-    return (
-      name.includes(token) || 
-      words.some(word => distance(word, token) <= edits)
-    );
-  });
+    const matchesQuery = queryTokens.every(token => {
+      const edits = allowedEdits(token.length);
+      return (
+        name.includes(token) || 
+        words.some(word => distance(word, token) <= edits)
+      );
+    });
 
-  const [minPrice, maxPrice] = priceRange;
-  const hasNoMax = maxPrice >= 999;
-  const priceMatches =
-    product.price >= minPrice && (hasNoMax || product.price <= maxPrice);
+    const [minPrice, maxPrice] = priceRange;
+    const hasNoMax = maxPrice >= 999;
+    const priceMatches =
+      product.price >= minPrice && (hasNoMax || product.price <= maxPrice);
 
-  return matchesQuery && priceMatches;
+    return matchesQuery && priceMatches;
 });
 
 

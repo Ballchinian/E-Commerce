@@ -33,5 +33,18 @@ module.exports = app;
 
 if (process.env.NODE_ENV !== 'test') {
     const PORT = process.env.PORT || 4000;
+
+    // Idempotent schema migration so the column OAuth sign-up needs always
+    // exists in whatever DB this instance is actually connected to.
+    const pool = require('./db/pool');
+    (async () => {
+        try {
+            await pool.query('ALTER TABLE users ADD COLUMN IF NOT EXISTS isOAuth BOOLEAN DEFAULT false');
+            console.log('Schema check: users.isOAuth present.');
+        } catch (err) {
+            console.error('Schema migration failed:', err);
+        }
+    })();
+
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }

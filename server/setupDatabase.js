@@ -9,6 +9,7 @@ const { Client } = require('pg');
             password            TEXT,
             firstName           VARCHAR(50),
             lastName            VARCHAR(50),
+            isOAuth             BOOLEAN           DEFAULT false,
             reset_token	      text,
             reset_token_expiry  bigint
         );

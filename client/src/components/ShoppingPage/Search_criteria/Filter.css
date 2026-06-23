@@ -1,3 +1,16 @@
-div#toggle_filter button {
-    
+.toggle_filter .dropdown-toggle {
+  background-color: var(--ink);
+  border-color: var(--ink);
+  font-weight: 600;
+}
+
+.toggle_filter .dropdown-toggle:hover,
+.toggle_filter .dropdown-toggle:focus,
+.toggle_filter .dropdown-toggle.show {
+  background-color: var(--ink-soft);
+  border-color: var(--ink-soft);
+}
+
+.toggle_filter .dropdown-item:active {
+  background-color: var(--mint);
 }

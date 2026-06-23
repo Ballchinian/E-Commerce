@@ -19,7 +19,8 @@ function ItemListings({searchQuery, priceRange, sortType}) {
           },
         });
         const data = await response.json();
-        setProducts(data);
+        //Guard against error payloads ({ message: ... }) so .filter never blows up
+        setProducts(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error('Failed to fetch products:', err);
       } finally {

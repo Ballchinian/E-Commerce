@@ -28,8 +28,10 @@ function BasketItem({ id, name, description, picture_url, price, qty, setBasketI
 
       const subtotalRes = await fetch(`${API_BASE_URL}/cart/update-cart-subtotal`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        Authorization: `Bearer ${token}`
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
       });
 
       //Sets subtotal to the global value so it can be updated in checkout.js

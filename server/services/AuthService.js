@@ -29,6 +29,13 @@ async function login({ email, password }, db) {
 
 async function register({ firstName, lastName, email, password }, db) {
   try {
+    //Friendly check up front so the user gets a clear message, the UNIQUE
+    //constraint on the column is still the source of truth (see register below)
+    const existing = await db.query('SELECT 1 FROM users WHERE email = $1', [email]);
+    if (existing.rows.length > 0) {
+      return { success: false, message: "An account with that email already exists" };
+    }
+
     const hashedPassword = await hashPassword(password);
     const result = await db.query(
       "INSERT INTO users (firstName, lastName, email, password) VALUES ($1, $2, $3, $4)",
@@ -41,6 +48,10 @@ async function register({ firstName, lastName, email, password }, db) {
       return { success: false, message: "User registration failed" };
     }
   } catch (err) {
+    //23505 is Postgres' unique_violation, i.e. two registrations raced the check above
+    if (err.code === '23505') {
+      return { success: false, message: "An account with that email already exists" };
+    }
     return { success: false, message: err.message };
   }
 }

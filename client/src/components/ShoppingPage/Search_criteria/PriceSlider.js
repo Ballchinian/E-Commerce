@@ -23,6 +23,7 @@ function PriceSlider({ min = 0, max = 999, onChange, setPriceRange }) {
         min={min}
         max={999}
         step={1}
+        sx={{ color: '#65bb9e' }}
       />
     </div>
   );

@@ -14,8 +14,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 //Email must be a valid format. Password is non-empty
 const loginSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string().required("Password is required")
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string().required("Password is required")
 });
 
 function LogInDisplay() {
@@ -100,6 +100,11 @@ function LogInDisplay() {
             })
                 .then(res => res.json())
                 .then(data => {
+                //Only treat it as logged in if we actually got a token back
+                if (!data.token) {
+                    console.error('Facebook login failed:', data.message || data.error);
+                    return;
+                }
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('email', JSON.stringify(data.user.email));
                 navigate('/shopping');

@@ -15,14 +15,16 @@ app.use(express.static('public'));
 
 // Public routes
 app.use('/auth', require('./routes/authRoutes'));
-app.use('/uploads', express.static(path.join(__dirname, 'public/uploads'), {
-  fallthrough: false //don't pass to verifyToken if not found
-}));
-app.use('/api', require('./routes/apiRoutes'));
-// Protected routes
 
+// Uploaded product images stay public, so they're served before the auth gate
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads'), {
+  fallthrough: false //don't 404 into the protected routes below
+}));
+
+// Everything past this point needs a valid access token
 app.use(verifyToken);
 
+app.use('/api', require('./routes/apiRoutes'));
 app.use('/product', require('./routes/productRoutes'));
 app.use('/cart', require('./routes/cartRoutes'));
 app.use('/order', require('./routes/orderRoutes'));

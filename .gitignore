@@ -1,6 +1,7 @@
 .env
 node_modules
 .envPlaceholder
+client/build
 
 server/public/images/*
 server/public/uploads/*

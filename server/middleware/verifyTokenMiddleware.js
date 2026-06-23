@@ -4,9 +4,7 @@ require('dotenv').config();
 
 //Verifies tokens using JWT
 function verifyToken(req, res, next) {
-  if (req.path.startsWith('/uploads')) {
-    return next(); // skip token check, bug with images not loading
-  }
+  // Let CORS preflight requests through, they never carry an Authorization header
   if (req.method === 'OPTIONS') {
     return next();
   }

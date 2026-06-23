@@ -5,12 +5,12 @@ const { Client } = require('pg');
   const usersTableStmt = `
     CREATE TABLE IF NOT EXISTS users (
       id                  INT               PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
-      email               VARCHAR(50),      
+      email               VARCHAR(50)       UNIQUE NOT NULL,
       password            TEXT,
       firstName           VARCHAR(50),
       lastName            VARCHAR(50),
-      reset_token	      text,				
-      reset_token_expiry  text				
+      reset_token	      text,
+      reset_token_expiry  bigint
     );
   `
 
@@ -90,10 +90,10 @@ const { Client } = require('pg');
     await db.query('DELETE FROM users');
     await db.query('ALTER SEQUENCE users_id_seq RESTART WITH 1');
 
-    // Insert admin with no password
+    // Insert admin with no password (set one later via the password-reset flow)
     await db.query(`
       INSERT INTO users (email)
-      VALUES ('admin@gmail.com')
+      VALUES ('admin@test.com')
     `);
     await db.end();
     

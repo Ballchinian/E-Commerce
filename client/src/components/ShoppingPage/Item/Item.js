@@ -31,14 +31,21 @@ function Item({picture_url, description, price, name, productid}) {
 
     
 
+    //Split into pounds and pence so the pence can sit small, like a storefront price tag
+    const [pounds, pence] = Number(price).toFixed(2).split('.');
+
     return (
         <div className="item_display ">
             <Card border="light">
-                <Card.Img  variant="top"  src={picture_url} alt="Item display"  />
+                <Card.Img  variant="top"  src={picture_url} alt={name}  />
                 <Card.Body>
                     <Card.Header>{name}</Card.Header>
                     <Card.Text >{description}</Card.Text>
-                    <Card.Subtitle>£{price}</Card.Subtitle>
+                    <Card.Subtitle className="price_tag">
+                        <span className="price_symbol">£</span>
+                        <span className="price_pounds">{pounds}</span>
+                        <span className="price_pence">{pence}</span>
+                    </Card.Subtitle>
                     <div className="basket">
 
                         <Button type="button" className="btn btn-success" onClick={handleAddToCart}>

@@ -63,14 +63,14 @@ router.post('/password-reset', async (req, res) => {
 
     //Creates token with expiry for security, unique
     const token = crypto.randomBytes(32).toString('hex');
-    const expires = Date.now() + 3600000; // 1 hour
+    const expires = Date.now() + 3600000; //1 hour
 
     await pool.query(
       'UPDATE users SET reset_token = $1, reset_token_expiry = $2 WHERE email = $3',
       [token, expires, email]
     );
 
-    //Creates identity and account (use gmail with App Password, less secure but its for a smaller app)
+    //Creates identity and account to send email
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {

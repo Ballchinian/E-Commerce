@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../../../config.js';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import './ResetPassword.css';
 
 const validationSchema = Yup.object().shape({
   password: Yup.string().min(6, "Minimum 6 characters").required("Password is required"),
@@ -46,7 +47,7 @@ function PasswordReset() {
   };
 
   return (
-    <div>
+    <div className="reset_card">
       <h2>Reset Your Password</h2>
       {message && <p style={{ color: 'green' }}>{message}</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}

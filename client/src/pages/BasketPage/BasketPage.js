@@ -43,14 +43,17 @@ function BasketPage() {
 
   return (
     <div id="basket_page">
-      <div className="basket_items">
-        <Basket 
-          basketItems = {basketItems}
-          setBasketItems= {setBasketItems} 
-        />
+      <div className="basket_main">
+        <h1 className="basket_title">Shopping Basket</h1>
+        <div className="basket_items">
+          <Basket
+            basketItems = {basketItems}
+            setBasketItems= {setBasketItems}
+          />
+        </div>
       </div>
-      <Checkout 
-        setBasketItems={setBasketItems} 
+      <Checkout
+        setBasketItems={setBasketItems}
       />
     </div>
   );

@@ -21,11 +21,15 @@ function ShoppingPage() {
   return (
     <div className="App">
       <Banner setSearchQuery={setSearchQuery} />
-      <div id="filter">
-        <Filter setSortType={setSortType} sortType={sortType}/>
-      </div>
-      <div id="price_slider">
-        <PriceSlider setPriceRange={setPriceRange} />
+
+      {/* Secondary toolbar: price range on the left, sort on the right */}
+      <div className="shop_toolbar">
+        <div id="price_slider">
+          <PriceSlider setPriceRange={setPriceRange} />
+        </div>
+        <div id="filter">
+          <Filter setSortType={setSortType} sortType={sortType}/>
+        </div>
       </div>
 
       <div className = "display">

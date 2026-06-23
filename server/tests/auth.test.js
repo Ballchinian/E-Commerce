@@ -6,34 +6,34 @@ describe('POST /login', () => {
   
   it('should login successfully with valid credentials', async () => {
     const response = await request(app)
-      .post('/login')
+      .post('/auth/login')
       .send({
         email: 'test@example.co.uk',
         password: 'password123456'
       });
     expect(response.statusCode).toBe(200);
-    expect(response.body).toHaveProperty('user'); 
+    expect(response.body).toHaveProperty('token');
   });
 
   it('should fail with invalid credentials', async () => {
     const response = await request(app)
-      .post('/login')
+      .post('/auth/login')
       .send({
         email: 'wrong@example.com',
         password: 'wrongpassword'
       });
-    expect(response.statusCode).toBe(404); 
+    expect(response.statusCode).toBe(404);
     expect(response.body).toHaveProperty('message');
   });
 
   it('should fail with a invalid password', async () => {
     const response = await request(app)
-      .post('/login')
+      .post('/auth/login')
       .send({
         email: 'test@example.co.uk',
         password: 'wrongpassword'
       });
-    expect(response.statusCode).toBe(401); 
+    expect(response.statusCode).toBe(401);
     expect(response.body).toHaveProperty('message');
   });
 });
@@ -55,7 +55,7 @@ describe('POST /register', () => {
 
   it('should register a user successfully', async () => {
     const response = await request(app)
-      .post('/register')
+      .post('/auth/register')
       .send(testUser);
     expect(response.statusCode).toBe(201);
     expect(response.body).toHaveProperty('message', 'User registered successfully');
@@ -64,7 +64,7 @@ describe('POST /register', () => {
   it('should fail to register duplicate user', async () => {
     // Register first time
     await request(app)
-      .post('/register')
+      .post('/auth/register')
       .send(testUser);
 
     // Register again

@@ -18,8 +18,7 @@ router.post('/cart-to-order', async (req, res) => {
         const cartItems = cartItemsResult.rows;
 
         if (cartItems.length === 0) {
-            console.log("hello!")
-            return res.status(300).json({ message: 'There are no items in basket to add to order' });
+            return res.status(400).json({ message: 'There are no items in basket to add to order' });
         }
 
         const toGetOrderId = await db.query('INSERT INTO orders (status, userid, created, total) VALUES ($1, $2, $3, $4) RETURNING id',

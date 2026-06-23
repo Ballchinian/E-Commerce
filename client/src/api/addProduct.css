@@ -2,10 +2,10 @@
   max-width: 500px;
   margin: 40px auto;
   padding: 30px;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  background-color: #fafafa;
-  box-shadow: 0 0 12px rgba(0,0,0,0.05);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -16,9 +16,15 @@
   padding: 10px;
   font-size: 16px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--line);
   width: 100%;
   box-sizing: border-box;
+}
+
+.add-product-form input:focus,
+.add-product-form textarea:focus {
+  outline: none;
+  border-color: var(--mint);
 }
 
 .add-product-form textarea {
@@ -29,19 +35,20 @@
 .add-product-form button {
   padding: 12px;
   font-size: 16px;
+  font-weight: 600;
   border-radius: 8px;
-  background-color: #007BFF;
-  color: white;
+  background-color: var(--mint);
+  color: #08130e;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .add-product-form button:hover {
-  background-color: #0056b3;
+  background-color: var(--mint-dark);
 }
 
 .add-product-form button:disabled {
-  background-color: #999;
+  background-color: #b9c3c0;
   cursor: not-allowed;
 }

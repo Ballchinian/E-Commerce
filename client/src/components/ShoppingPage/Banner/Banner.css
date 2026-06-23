@@ -1,130 +1,130 @@
 header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 18px;
-  background-color: var(--ink);
-  gap: 1.25rem;
-  height: auto;
-  color: var(--mint);
-  box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    background-color: var(--ink);
+    gap: 1.25rem;
+    height: auto;
+    color: var(--mint);
+    box-shadow: var(--shadow-md);
 }
 
 header p {
-  color: var(--mint);
+    color: var(--mint);
 }
 
 button {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 #shop_name {
-  width: 200px;
+    width: 200px;
 }
 
 #shop_name h2 {
-  margin: 0;
-  font-weight: 700;
-  letter-spacing: -0.5px;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 div#delivery_address p {
-  margin: 0;
-  font-size: 0.85rem;
-  color: #9fd8c4;
+    margin: 0;
+    font-size: 0.85rem;
+    color: #9fd8c4;
 }
 
 /* Amazon-style pill search: rounded input with the search button attached */
 #search_bar {
-  flex-grow: 0.8;
-  min-width: 280px;
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 2px solid transparent;
-  transition: border-color 150ms ease;
+    flex-grow: 0.8;
+    min-width: 280px;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: border-color 150ms ease;
 }
 
 #search_bar:focus-within {
-  border-color: var(--mint);
+    border-color: var(--mint);
 }
 
 #search_bar input {
-  flex: 1;
-  height: 40px;
-  border: none;
-  outline: none;
-  padding: 0 0.85rem;
-  font-size: 0.95rem;
-  color: var(--text);
+    flex: 1;
+    height: 40px;
+    border: none;
+    outline: none;
+    padding: 0 0.85rem;
+    font-size: 0.95rem;
+    color: var(--text);
 }
 
 #search_bar button {
-  margin: 0;
-  height: 40px;
-  padding: 0 16px;
-  border: none;
-  background: var(--mint);
-  display: flex;
-  align-items: center;
-  transition: background-color 150ms ease;
+    margin: 0;
+    height: 40px;
+    padding: 0 16px;
+    border: none;
+    background: var(--mint);
+    display: flex;
+    align-items: center;
+    transition: background-color 150ms ease;
 }
 
 #search_bar button:hover {
-  background: var(--mint-dark);
+    background: var(--mint-dark);
 }
 
 #search_bar img {
-  width: auto;
-  height: 22px;
+    width: auto;
+    height: 22px;
 }
 
 #sign_out button {
-  padding: 6px 10px;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  background: none;
-  transition: border-color 150ms ease;
+    padding: 6px 10px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: none;
+    transition: border-color 150ms ease;
 }
 
 #sign_out button:hover {
-  border-color: var(--mint);
+    border-color: var(--mint);
 }
 
 #sign_out p {
-  margin: 0;
-  font-size: 0.9rem;
+    margin: 0;
+    font-size: 0.9rem;
 }
 
 #basket button {
-  border: none;
-  background: none;
-  padding: 0;
+    border: none;
+    background: none;
+    padding: 0;
 }
 
 #basket img {
-  width: 56px;
-  height: auto;
-  transition: transform 150ms ease;
+    width: 56px;
+    height: auto;
+    transition: transform 150ms ease;
 }
 
 #basket img:hover {
-  transform: scale(1.08);
+    transform: scale(1.08);
 }
 
 @media (max-width: 900px) {
-  #delivery_address {
-    display: none;
-  }
+    #delivery_address {
+        display: none;
+    }
 }
 
 @media (max-width: 600px) {
-  #shop_name {
-    display: none;
-  }
+    #shop_name {
+        display: none;
+    }
 }

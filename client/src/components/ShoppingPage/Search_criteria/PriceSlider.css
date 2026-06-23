@@ -1,12 +1,12 @@
 div#price_bar {
-  width: 300px;
-  max-width: 100%;
+    width: 300px;
+    max-width: 100%;
 }
 
 div#price_bar p {
-  color: var(--text);
-  margin: 0 0 0.15rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-align: left;
+    color: var(--text);
+    margin: 0 0 0.15rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: left;
 }

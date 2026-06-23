@@ -9,34 +9,34 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function ShoppingPage() {
-  //searchQuery is from the search bar
-  //PriceRange is from the price range bar
-  //sortType is from the filter button
-  //All of these are declared here to help communicate between modules
-  const [searchQuery, setSearchQuery] = useState('');
-  const [priceRange, setPriceRange] = useState([0, 999]);
-  //'Filter' is the default button name
-  const [sortType, setSortType] = useState('Filter');
+    //searchQuery is from the search bar
+    //PriceRange is from the price range bar
+    //sortType is from the filter button
+    //All of these are declared here to help communicate between modules
+    const [searchQuery, setSearchQuery] = useState('');
+    const [priceRange, setPriceRange] = useState([0, 999]);
+    //'Filter' is the default button name
+    const [sortType, setSortType] = useState('Filter');
 
-  return (
-    <div className="App">
-      <Banner setSearchQuery={setSearchQuery} />
+    return (
+        <div className="App">
+            <Banner setSearchQuery={setSearchQuery} />
 
-      {/* Secondary toolbar: price range on the left, sort on the right */}
-      <div className="shop_toolbar">
-        <div id="price_slider">
-          <PriceSlider setPriceRange={setPriceRange} />
+            {/* Secondary toolbar: price range on the left, sort on the right */}
+            <div className="shop_toolbar">
+                <div id="price_slider">
+                    <PriceSlider setPriceRange={setPriceRange} />
+                </div>
+                <div id="filter">
+                    <Filter setSortType={setSortType} sortType={sortType}/>
+                </div>
+            </div>
+
+            <div className = "display">
+                <ItemListings searchQuery={searchQuery} priceRange={priceRange} sortType={sortType}/>
+            </div>
         </div>
-        <div id="filter">
-          <Filter setSortType={setSortType} sortType={sortType}/>
-        </div>
-      </div>
-
-      <div className = "display">
-        <ItemListings searchQuery={searchQuery} priceRange={priceRange} sortType={sortType}/>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default ShoppingPage;

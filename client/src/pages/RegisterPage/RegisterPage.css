@@ -1,13 +1,13 @@
 div.register_page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.5rem;
 }
 
 div.register_page .card {
-  border: none;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
 }

@@ -4,25 +4,25 @@ require('dotenv').config();
 
 //Verifies tokens using JWT
 function verifyToken(req, res, next) {
-  // Let CORS preflight requests through, they never carry an Authorization header
-  if (req.method === 'OPTIONS') {
-    return next();
-  }
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]; 
+    // Let CORS preflight requests through, they never carry an Authorization header
+    if (req.method === 'OPTIONS') {
+        return next();
+    }
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]; 
 
-  if (!token) {
-    return res.status(401).json({ message: 'Access token missing' });
-  }
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(403).json({ message: 'Invalid token' });
+    if (!token) {
+        return res.status(401).json({ message: 'Access token missing' });
     }
 
-    req.user = decoded;
-    next();
-  });
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(403).json({ message: 'Invalid token' });
+        }
+
+        req.user = decoded;
+        next();
+    });
 }
 
 module.exports = verifyToken;

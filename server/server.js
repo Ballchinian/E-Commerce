@@ -18,7 +18,7 @@ app.use('/auth', require('./routes/authRoutes'));
 
 // Uploaded product images stay public, so they're served before the auth gate
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads'), {
-  fallthrough: false //don't 404 into the protected routes below
+    fallthrough: false //don't 404 into the protected routes below
 }));
 
 // Everything past this point needs a valid access token
@@ -32,6 +32,6 @@ app.use('/order', require('./routes/orderRoutes'));
 module.exports = app;
 
 if (process.env.NODE_ENV !== 'test') {
-  const PORT = process.env.PORT || 4000;
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    const PORT = process.env.PORT || 4000;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }

@@ -1,101 +1,101 @@
 #login_banner {
-  width: 360px;
-  padding: 1.75rem;
+    width: 360px;
+    padding: 1.75rem;
 }
 
 #login_banner .card-header {
-  background: none;
-  border: none;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--ink);
-  text-align: center;
-  margin-bottom: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
 #login_banner input {
-  margin-bottom: 0.75rem;
-  height: 42px;
+    margin-bottom: 0.75rem;
+    height: 42px;
 }
 
 #login_banner .form-group {
-  margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 button#login_button {
-  width: 100%;
-  justify-content: center;
-  height: 44px;
-  margin-bottom: 0.75rem;
+    width: 100%;
+    justify-content: center;
+    height: 44px;
+    margin-bottom: 0.75rem;
 }
 
 button#password_reset {
-  font-size: 0.8rem;
-  border: none;
-  background: none;
-  color: var(--mint-dark);
-  padding: 0;
-  margin: 0 0 1.25rem auto;
+    font-size: 0.8rem;
+    border: none;
+    background: none;
+    color: var(--mint-dark);
+    padding: 0;
+    margin: 0 0 1.25rem auto;
 }
 
 button#password_reset:hover {
-  text-decoration: underline;
-  background: none;
-  color: var(--mint-dark);
+    text-decoration: underline;
+    background: none;
+    color: var(--mint-dark);
 }
 
 div#new_account {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  margin-top: 0.5rem;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
 }
 
 div#new_account .btn {
-  width: 100%;
-  justify-content: center;
-  height: 44px;
+    width: 100%;
+    justify-content: center;
+    height: 44px;
 }
 
 /* Divider before the social sign-in options */
 div#auth.card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  align-items: center;
-  margin-top: 1.25rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
 }
 
 div#auth button {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: 1px solid var(--line);
-  background: #fff;
-  border-radius: 6px;
-  padding: 0.4rem 0.9rem;
-  margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 6px;
+    padding: 0.4rem 0.9rem;
+    margin: 0;
 }
 
 div#auth button:hover {
-  border-color: var(--mint);
+    border-color: var(--mint);
 }
 
 #auth img {
-  width: 22px;
-  height: 22px;
+    width: 22px;
+    height: 22px;
 }
 
 #auth p {
-  color: #444;
-  margin: 0;
-  font-size: 0.9rem;
+    color: #444;
+    margin: 0;
+    font-size: 0.9rem;
 }
 
 @media (max-height: 600px) {
-  #login_banner .card-header {
-    display: none;
-  }
+    #login_banner .card-header {
+        display: none;
+    }
 }

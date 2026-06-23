@@ -2,105 +2,105 @@ const { Client } = require('pg');
 
 (async () => {
 
-  const usersTableStmt = `
-    CREATE TABLE IF NOT EXISTS users (
-      id                  INT               PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
-      email               VARCHAR(50)       UNIQUE NOT NULL,
-      password            TEXT,
-      firstName           VARCHAR(50),
-      lastName            VARCHAR(50),
-      reset_token	      text,
-      reset_token_expiry  bigint
-    );
-  `
+    const usersTableStmt = `
+        CREATE TABLE IF NOT EXISTS users (
+            id                  INT               PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
+            email               VARCHAR(50)       UNIQUE NOT NULL,
+            password            TEXT,
+            firstName           VARCHAR(50),
+            lastName            VARCHAR(50),
+            reset_token	      text,
+            reset_token_expiry  bigint
+        );
+    `
 
-  const productsTableStmt = `
-    CREATE TABLE IF NOT EXISTS products (
-      id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
-      name            VARCHAR(50)     NOT NULL,
-      price           BIGINT          NOT NULL,
-      description     VARCHAR(50)     NOT NULL,
-      picture_url	  varchar(100)    NOT NULL
-    );
-  `
+    const productsTableStmt = `
+        CREATE TABLE IF NOT EXISTS products (
+            id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
+            name            VARCHAR(50)     NOT NULL,
+            price           BIGINT          NOT NULL,
+            description     VARCHAR(50)     NOT NULL,
+            picture_url	  varchar(100)    NOT NULL
+        );
+    `
 
-  const ordersTableStmt = `
-    CREATE TABLE IF NOT EXISTS orders (
-      id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
-      total           INT             NOT NULL,
-      status          VARCHAR(50)     NOT NULL,
-      userId          INT             NOT NULL,
-      created         DATE            NOT NULL,
-      FOREIGN KEY (userId) REFERENCES users(id)
-    );
-  `
+    const ordersTableStmt = `
+        CREATE TABLE IF NOT EXISTS orders (
+            id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
+            total           INT             NOT NULL,
+            status          VARCHAR(50)     NOT NULL,
+            userId          INT             NOT NULL,
+            created         DATE            NOT NULL,
+            FOREIGN KEY (userId) REFERENCES users(id)
+        );
+    `
 
-  const orderItemsTableStmt = `
-    CREATE TABLE IF NOT EXISTS orderItems (
-      id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
-      orderId         INT             NOT NULL,
-      qty             INT             NOT NULL,
-      productId       INT             NOT NULL,
-      FOREIGN KEY (orderId) REFERENCES orders(id),
-      FOREIGN KEY (productId) REFERENCES products(id)
-    );
-  `
+    const orderItemsTableStmt = `
+        CREATE TABLE IF NOT EXISTS orderItems (
+            id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
+            orderId         INT             NOT NULL,
+            qty             INT             NOT NULL,
+            productId       INT             NOT NULL,
+            FOREIGN KEY (orderId) REFERENCES orders(id),
+            FOREIGN KEY (productId) REFERENCES products(id)
+        );
+    `
 
-  const cartsTableStmt = `
-    CREATE TABLE IF NOT EXISTS carts (
-      id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
-      userId          INT             NOT NULL,
-      modified        DATE            NOT NULL,
-      created         DATE            NOT NULL,
-      FOREIGN KEY (userId) REFERENCES users(id)
-    );
-  `
+    const cartsTableStmt = `
+        CREATE TABLE IF NOT EXISTS carts (
+            id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
+            userId          INT             NOT NULL,
+            modified        DATE            NOT NULL,
+            created         DATE            NOT NULL,
+            FOREIGN KEY (userId) REFERENCES users(id)
+        );
+    `
 
-  const cartItemsTableStmt = `
-    CREATE TABLE IF NOT EXISTS cartItems (
-      id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
-      cartId          INT             NOT NULL,
-      productId       INT             NOT NULL,
-      qty             INT             NOT NULL,
-      FOREIGN KEY (cartId) REFERENCES carts(id),
-      FOREIGN KEY (productId) REFERENCES products(id)
-    );
-  `
+    const cartItemsTableStmt = `
+        CREATE TABLE IF NOT EXISTS cartItems (
+            id              INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
+            cartId          INT             NOT NULL,
+            productId       INT             NOT NULL,
+            qty             INT             NOT NULL,
+            FOREIGN KEY (cartId) REFERENCES carts(id),
+            FOREIGN KEY (productId) REFERENCES products(id)
+        );
+    `
 
-  try {
-    const db = new Client({
-      user: process.env.PG_USER,
-      host: process.env.PG_HOST,
-      database: process.env.PG_DB,
-      password: process.env.PG_PASS,
-      port: process.env.PG_PORT
-    });
+    try {
+        const db = new Client({
+            user: process.env.PG_USER,
+            host: process.env.PG_HOST,
+            database: process.env.PG_DB,
+            password: process.env.PG_PASS,
+            port: process.env.PG_PORT
+        });
 
-    await db.connect();
+        await db.connect();
 
-    // Create tables on database
-    await db.query(usersTableStmt);
-    await db.query(productsTableStmt);
-    await db.query(ordersTableStmt);
-    await db.query(orderItemsTableStmt);
-    await db.query(cartsTableStmt);
-    await db.query(cartItemsTableStmt);
+        // Create tables on database
+        await db.query(usersTableStmt);
+        await db.query(productsTableStmt);
+        await db.query(ordersTableStmt);
+        await db.query(orderItemsTableStmt);
+        await db.query(cartsTableStmt);
+        await db.query(cartItemsTableStmt);
 
-    // Reset the users ID sequence to 1 (in case it's already used)
-    await db.query('DELETE FROM users');
-    await db.query('ALTER SEQUENCE users_id_seq RESTART WITH 1');
+        // Reset the users ID sequence to 1 (in case it's already used)
+        await db.query('DELETE FROM users');
+        await db.query('ALTER SEQUENCE users_id_seq RESTART WITH 1');
 
-    // Insert admin with no password (set one later via the password-reset flow)
-    await db.query(`
-      INSERT INTO users (email)
-      VALUES ('admin@test.com')
-    `);
-    await db.end();
-    
-    console.log("Tables created and admin account inserted.");
+        // Insert admin with no password (set one later via the password-reset flow)
+        await db.query(`
+            INSERT INTO users (email)
+            VALUES ('admin@test.com')
+        `);
+        await db.end();
+        
+        console.log("Tables created and admin account inserted.");
 
-  } catch(err) {
-    console.log("ERROR CREATING ONE OR MORE TABLES: ", err);
-  }
+    } catch(err) {
+        console.log("ERROR CREATING ONE OR MORE TABLES: ", err);
+    }
 
 })();

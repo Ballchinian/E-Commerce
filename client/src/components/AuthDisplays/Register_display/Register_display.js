@@ -78,7 +78,8 @@ function RegisterDisplay() {
                         handleChange,
                         values,
                         touched,
-                        errors
+                        errors,
+                        isSubmitting
                     }) => (
                         <Form noValidate onSubmit={handleSubmit}>
                             <Form.Group controlId="formFirstName">
@@ -153,8 +154,8 @@ function RegisterDisplay() {
                                 </Form.Control.Feedback>
                             </Form.Group>
 
-                            <Button type="submit" id="login_button">
-                                Register
+                            <Button type="submit" id="login_button" disabled={isSubmitting}>
+                                {isSubmitting ? 'Creating account…' : 'Register'}
                             </Button>
                         </Form>
                     )}

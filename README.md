@@ -83,6 +83,8 @@ New products are added through the admin **Add Product** page (`/addProduct`), w
 
 ### Server
 
+You need a local PostgreSQL instance running, with an empty database whose name matches `PG_DB` below.
+
 ```
 cd server
 npm install
@@ -90,7 +92,32 @@ node setupDatabase.js   # creates the tables and a seed admin account
 npm start               # starts the API (PORT defaults to 4000)
 ```
 
-The server reads its config from a `.env` file (`DATABASE_URL`, `JWT_SECRET`, `EMAIL_USERNAME`, `EMAIL_PASSWORD`, `GOOGLE_CLIENT_ID`, and the Facebook app credentials). Set `API_BASE_URL` to this server's public URL so uploaded image links resolve correctly.
+The server reads its config from a `server/.env` file. Two pieces connect to Postgres in different ways, so both sets of vars are needed:
+
+- `setupDatabase.js` (table + seed creation) uses the discrete `PG_USER`, `PG_HOST`, `PG_DB`, `PG_PASS`, `PG_PORT` vars.
+- The running API (`db/pool.js`) connects with a single `DATABASE_URL` (SSL enabled), pointing at the same database.
+
+```
+# Used by setupDatabase.js
+PG_USER=postgres
+PG_HOST=localhost
+PG_DB=ecommerce_project
+PG_PASS=your_local_password
+PG_PORT=5432
+
+# Used by the running server (db/pool.js)
+DATABASE_URL=postgresql://postgres:your_local_password@localhost:5432/ecommerce_project
+
+JWT_SECRET=any_secret_string
+EMAIL_USERNAME=you@gmail.com          # Gmail address for password-reset emails
+EMAIL_PASSWORD=your_gmail_app_password
+GOOGLE_CLIENT_ID=...apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=...              # Facebook app credentials too, if testing FB login
+```
+
+Optionally set `API_BASE_URL` to this server's public URL so uploaded image links resolve correctly.
+
+> Note: `setupDatabase.js` runs `DELETE FROM users` to reset the ID sequence, so it clears existing accounts, run it only when initialising a local database.
 
 ### Client
 

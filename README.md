@@ -22,9 +22,9 @@ The **server is the source of truth**. The client holds an access token and the 
 
 Routes are layered in `server.js`:
 
-1. **Public** — authentication (`/auth`) and the static product images (`/uploads`).
-2. **The auth gate** — `verifyToken` rejects anything without a valid access token.
-3. **Protected** — products, cart, orders, and the admin product upload all sit behind the gate.
+1. **Public** - authentication (`/auth`) and the static product images (`/uploads`).
+2. **The auth gate** - `verifyToken` rejects anything without a valid access token.
+3. **Protected** - products, cart, orders, and the admin product upload all sit behind the gate.
 
 ## Authentication
 

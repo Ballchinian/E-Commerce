@@ -1,16 +1,16 @@
 # E-Commerce App
 
-A full-stack shopping site with the feel of Amazon. Make an account (or sign in with Google or Facebook), browse a catalogue with fuzzy search and price filtering, build a basket, and check out to turn it into an order. There's an admin page for adding new products with an uploaded image.
+A full stack shopping site with the feel of Amazon. Make an account (or sign in with Google or Facebook), browse a catalogue with fuzzy search and price filtering, build a basket, and check out to turn it into an order. There's an admin page for adding new products with an uploaded image.
 
 ## Features
 
 - Accounts with email/password, plus Google and Facebook sign-in
-- Password reset by email, with a single-use, time-limited link
-- A product catalogue with fuzzy search, a price-range slider, and sorting
-- One basket per user, with live quantity editing and a server-calculated subtotal
+- Password reset by email, with a single-use, time limited link
+- A product catalogue with fuzzy search, a price range slider, and sorting
+- One basket per user, with live quantity editing and a server calculated subtotal
 - Checkout that turns the basket into a saved order
 - Admin product upload with image validation and storage
-- A JWT-protected API, with route guarding on the client
+- A JWT protected API, with route guarding on the client
 
 Endpoint docs live in [ENDPOINTS.md](./ENDPOINTS.md).
 
@@ -32,9 +32,9 @@ Accounts use a single JSON Web Token as the access token.
 
 - Passwords are hashed with **bcrypt** before they ever reach the database.
 - On login the server returns a **JWT** signed with `JWT_SECRET` that carries the user id and email and expires after **one hour**. The client stores it and sends it as a `Bearer` token on every protected request.
-- **Google** sign-in verifies the Google ID token's signature and audience (`GOOGLE_CLIENT_ID`) server-side, then links to an existing account with the same email or creates one.
-- **Facebook** sign-in validates the user access token against the Graph API and links or creates an account the same way.
-- **Password reset** emails a single-use token (via Nodemailer) that expires in one hour; completing the reset clears the token so the link can't be reused.
+- **Google** sign in verifies the Google ID token's signature and audience (`GOOGLE_CLIENT_ID`) server side, then links to an existing account with the same email or creates one.
+- **Facebook** sign in validates the user access token against the Graph API and links or creates an account the same way.
+- **Password reset** emails a single use token (via Nodemailer) that expires in one hour; completing the reset clears the token so the link can't be reused.
 
 On the client, `ProtectedRoute` keeps unauthenticated visitors out of the shopping, basket, and admin pages, and the server's `verifyToken` middleware is the real enforcement behind it.
 
@@ -62,7 +62,7 @@ Checkout turns the current basket into an **order**: a new order row is created 
 
 Seed products are stored with a name, price, description, and an image URL.
 
-New products are added through the admin **Add Product** page (`/addProduct`), which is meant for the admin account and sits behind the auth gate. Uploads go through **Multer** with a file filter that only accepts `.jpg`/`.png` images and a 2 MB size limit; the saved file is served back as a public URL under `/uploads`, which is then stored on the product. So catalogue images can come either from the seeded URLs or from a real upload, rather than being hard-coded into the frontend.
+New products are added through the admin **Add Product** page (`/addProduct`), which is meant for the admin account and sits behind the auth gate. Uploads go through **Multer** with a file filter that only accepts `.jpg`/`.png` images and a 2 MB size limit; the saved file is served back as a public URL under `/uploads`, which is then stored on the product. So catalogue images can come either from the seeded URLs or from a real upload, rather than being hard coded into the frontend.
 
 ## Tech stack
 
